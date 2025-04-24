@@ -1,27 +1,29 @@
 pipeline {
-    agent any
-    options {
-        skipStagesAfterUnstable()
-    }
+    agent { label 'agente1' }  // Aquí especificas el nombre del agente
+
     stages {
-        stage('Build') {
+        // Stage de descarga del código
+        stage('Descargar Código') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                git 'https://github.com/JUANPLATAPOLANIA/java.git'
             }
         }
-        stage('Test') {
+
+        // Stage de build (compilación) para Java
+        stage('Build') {
             steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
+                script {
+                    sh './mvnw clean install'  // Usando Maven para construir el proyecto
                 }
             }
         }
-        stage('Deliver') { 
+
+        // Stage de ejecución de pruebas
+        stage('Pruebas') {
             steps {
-                sh './jenkins/scripts/deliver.sh' 
+                script {
+                    sh './mvnw test'  // Usando Maven para ejecutar las pruebas
+                }
             }
         }
     }
