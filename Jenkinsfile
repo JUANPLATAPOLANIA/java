@@ -13,7 +13,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                   sh 'mvn clean install'  // Usando Maven para construir el proyecto
+                  sh 'export PATH=$PATH:/opt/apache-maven-3.9.6/bin && mvn clean install' // Usando Maven para construir el proyecto
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
         stage('Pruebas') {
             steps {
                 script {
-                    sh 'mvn test'  // Usando Maven para ejecutar las pruebas
+                    sh 'export PATH=$PATH:/opt/apache-maven-3.9.6/bin && mvn test'  // Usando Maven para ejecutar las pruebas
                 }
             }
         }
