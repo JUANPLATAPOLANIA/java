@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'agente1' }  // Aquí especificas el nombre del agente
+    agent { label 'agent1' }  // Aquí especificas el nombre del agente
 
     stages {
         // Stage de descarga del código
