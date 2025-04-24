@@ -13,7 +13,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh './mvnw clean install'  // Usando Maven para construir el proyecto
+                   sh 'mvn clean install'  // Usando Maven para construir el proyecto
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
         stage('Pruebas') {
             steps {
                 script {
-                    sh './mvnw test'  // Usando Maven para ejecutar las pruebas
+                    sh 'mvn test'  // Usando Maven para ejecutar las pruebas
                 }
             }
         }
